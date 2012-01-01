@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1" Active="Default">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <Units Count="5">
+      <Unit0>
+        <Filename Value="refobjtest.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="refobjtest"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="20"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="libunits/lfp_refobj_low.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="lfp_refobj_low"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="56"/>
+        <CursorPos X="26" Y="16"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="lfp_refobj"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="24"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/sysutils/sysutilh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="260"/>
+        <CursorPos X="23" Y="278"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/sysutils/sysutils.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="126"/>
+        <CursorPos X="9" Y="130"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+    </Units>
+    <JumpHistory Count="15" HistoryIndex="14">
+      <Position1>
+        <Filename Value="libunits/lfp_refobj_low.pas"/>
+        <Caret Line="24" Column="16" TopLine="5"/>
+      </Position1>
+      <Position2>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="31" Column="13" TopLine="8"/>
+      </Position2>
+      <Position3>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="67" Column="21" TopLine="45"/>
+      </Position3>
+      <Position4>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="84" Column="13" TopLine="52"/>
+      </Position4>
+      <Position5>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="55" Column="4" TopLine="33"/>
+      </Position5>
+      <Position6>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="69" Column="6" TopLine="51"/>
+      </Position6>
+      <Position7>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="66" Column="20" TopLine="45"/>
+      </Position7>
+      <Position8>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="90" Column="21" TopLine="67"/>
+      </Position8>
+      <Position9>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="70" Column="14" TopLine="125"/>
+      </Position9>
+      <Position10>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="90" Column="21" TopLine="72"/>
+      </Position10>
+      <Position11>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="17" Column="25" TopLine="1"/>
+      </Position11>
+      <Position12>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="85" Column="18" TopLine="67"/>
+      </Position12>
+      <Position13>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="120" Column="1" TopLine="103"/>
+      </Position13>
+      <Position14>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="69" Column="35" TopLine="45"/>
+      </Position14>
+      <Position15>
+        <Filename Value="refobjtest.lpr"/>
+        <Caret Line="22" Column="1" TopLine="1"/>
+      </Position15>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="9"/>
+    <Target>
+      <Filename Value="refobjtest"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="libunits"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Debugging>
+        <UseHeaptrc Value="True"/>
+      </Debugging>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <UseMsgFile Value="True"/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
