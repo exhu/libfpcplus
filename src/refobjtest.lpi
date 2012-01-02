@@ -42,7 +42,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="20" Y="24"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -53,7 +53,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="26" Y="16"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -63,9 +63,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="24" Y="19"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="65"/>
+        <CursorPos X="32" Y="75"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -74,7 +74,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="260"/>
         <CursorPos X="23" Y="278"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -82,10 +82,10 @@
         <WindowIndex Value="0"/>
         <TopLine Value="126"/>
         <CursorPos X="27" Y="131"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit4>
     </Units>
-    <JumpHistory Count="18" HistoryIndex="17">
+    <JumpHistory Count="19" HistoryIndex="18">
       <Position1>
         <Filename Value="libunits/lfp_refobj_low.pas"/>
         <Caret Line="24" Column="16" TopLine="5"/>
@@ -158,6 +158,10 @@
         <Filename Value="libunits/lfp_refobj.pas"/>
         <Caret Line="74" Column="40" TopLine="55"/>
       </Position18>
+      <Position19>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="171" Column="6" TopLine="144"/>
+      </Position19>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
