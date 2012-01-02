@@ -3,11 +3,10 @@ unit lfp_refobj;
 {$mode objfpc}{$H+}
 {$interfaces corba}
 {assertions on}
-
+{M+}
 interface
 
-uses
-  lfp_refobj_low;
+//uses
 //  Classes, SysUtils;
 
 type
@@ -31,19 +30,48 @@ type
   /// FreeAndNil(a);
   /// safeRelease(b,b);
   /// safeRelease(c,c);
+
+  { TRefCounter }
+  /// manages the references, used internally
+  TRefCounter = class
+  private
+    strong, weak : longint;
+    f_iobj : IRefObject;
+
+  public
+    constructor Create(o : IRefObject);
+
+    // TODO make thread-safe
+    procedure incStrong;inline;
+    procedure decStrong;inline;
+    procedure incWeak;inline;
+    procedure decWeak;inline;
+
+    function tryFreeObj : boolean;inline; // true if freed
+
+    /// true if strong < 1
+    function mustFreeIOBJ : boolean;
+
+    /// true if both weak and strong < 1
+    function noRefsLeft : boolean;
+
+    property iObj : IRefObject read f_iobj;
+  end;
+
+
   { TRefObserver }
 
   TRefObserver = class
     public
-      function getTRefObject : TRefObject;
+      function getIRefObject : IRefObject;
 
       destructor Destroy; override;
 
     //protected
-      constructor create(p : PRefStruct);
+      constructor create(p : TRefCounter);
 
     private
-      refstruct : PRefStruct;
+      refcounter : TRefCounter;
 
   end;
 
@@ -52,7 +80,7 @@ type
 
   TRefObject = class(IRefObject)
     private
-      refstruct : PRefStruct;
+      refcounter : TRefCounter;
       magic : integer; // magic number to identify on safeRelease
     public
       constructor create;
@@ -90,9 +118,61 @@ procedure safeRelease(o: IRefObject; var vartonil);
 begin
   if o <> nil then
      begin
-       if o.release then
-          pointer(vartonil) := nil;
+       o.release;
      end;
+  pointer(vartonil) := nil;
+end;
+
+{ TRefCounter }
+
+constructor TRefCounter.Create(o: IRefObject);
+begin
+  f_iobj := o;
+  strong := 1;
+  weak := 0;
+end;
+
+procedure TRefCounter.incStrong;
+begin
+  inc(strong);
+end;
+
+procedure TRefCounter.decStrong;
+begin
+  dec(strong);
+end;
+
+procedure TRefCounter.incWeak;
+begin
+  inc(weak);
+end;
+
+procedure TRefCounter.decWeak;
+begin
+  dec(weak);
+end;
+
+function TRefCounter.tryFreeObj: boolean;
+begin
+  if mustFreeIOBJ then
+     begin
+       f_iobj.asTObject.Free;
+       f_iobj := nil;
+       exit(true);
+     end;
+
+  result := false;
+end;
+
+
+function TRefCounter.mustFreeIOBJ: boolean;
+begin
+  result := strong < 1;
+end;
+
+function TRefCounter.noRefsLeft: boolean;
+begin
+  result := (strong < 1) and (weak < 1);
 end;
 
 
@@ -118,14 +198,15 @@ end;
 
 constructor TRefObject.create;
 begin
-  new(refstruct, init(self));
+  inherited create;
+  refcounter := TRefCounter.create(self);
   magic := refObjectMagic;
 end;
 
 destructor TRefObject.destroy;
 begin
-  if refstruct^.noRefsLeft then
-      dispose(refstruct, done);
+  if refcounter.noRefsLeft then
+      FreeAndNil(refcounter);
 
   magic := 0;
   inherited destroy;
@@ -133,25 +214,19 @@ end;
 
 function TRefObject.retain: IRefObject;
 begin
-  refstruct^.incStrong;
+  refcounter.incStrong;
   result := self;
 end;
 
 function TRefObject.release: boolean;
 begin
-  refstruct^.decStrong;
-  if refstruct^.mustFreePointer then
-     begin
-       Free;
-       exit(true);
-     end;
-
-  result := false;
+  refcounter.decStrong;
+  result := refcounter.tryFreeObj;
 end;
 
 function TRefObject.createRefObserver: TRefObserver;
 begin
-  result := TRefObserver.create(refstruct);
+  result := TRefObserver.create(refcounter);
 end;
 
 function TRefObject.asTObject: TObject;
@@ -161,30 +236,24 @@ end;
 
 { TRefObserver }
 
-function TRefObserver.getTRefObject: TRefObject;
+function TRefObserver.getIRefObject: IRefObject;
 begin
-  if refstruct <> nil then
-     exit(TRefObject(refstruct^.getPtr));
-
-  result := nil;
+  exit(refcounter.iObj);
 end;
 
 destructor TRefObserver.Destroy;
 begin
-  //if (refstruct <> nil) then
-  //begin
-     refstruct^.decWeak;
-     if refstruct^.noRefsLeft then
-        dispose(refstruct, done);
-  //end;
-
+ refcounter.decWeak;
+ if refcounter.noRefsLeft then
+    FreeAndNil(refcounter);
   inherited Destroy;
 end;
 
-constructor TRefObserver.create(p: PRefStruct);
+constructor TRefObserver.create(p: TRefCounter);
 begin
-  refstruct := p;
-  refstruct^.incWeak;
+  inherited create;
+  refcounter := p;
+  refcounter.incWeak;
 end;
 
 end.

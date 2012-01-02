@@ -12,17 +12,40 @@ uses
 
 {$R *.res}
 
-var a: TRefObject;
+type
+
+  { TMyRefCls }
+
+  TMyRefCls = class(TRefObject)
+    procedure sayHello;
+  end;
+
+
+
+var a: TMyRefCls;
     b: IRefObject;
     c : TRefObserver;
+    o : TObject;
+    io : IRefObject;
+
+{ TMyRefCls }
+
+procedure TMyRefCls.sayHello;
 begin
-  a := TRefObject.create;
+  writeln('hello');
+end;
+
+begin
+  a := TMyRefCls.create;
   b := safeRetain(a);
   c := b.createRefObserver;
-  writeln('hello');
 
   safeRelease(a,a);
+  io := c.getIRefObject;
+  o := io.asTObject;
+  (o as TMyRefCls).sayHello;
   safeRelease(b,b);
+  writeln('Is TMyRefCls alive? ', boolean(ptrint(c.getIRefObject)));
   FreeAndNil(c);
 end.
 
