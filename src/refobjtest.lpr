@@ -6,13 +6,14 @@ uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  Classes, lfp_refobj_low, lfp_refobj
+  Classes, lfp_refobj
   { you can add units after this },
   sysutils;
 
 {$R *.res}
 
-var a,b : TRefObject;
+var a: TRefObject;
+    b: IRefObject;
     c : TRefObserver;
 begin
   a := TRefObject.create;
@@ -20,8 +21,8 @@ begin
   c := b.createRefObserver;
   writeln('hello');
 
-  safeRelease(a);
-  safeRelease(b);
+  safeRelease(a,a);
+  safeRelease(b,b);
   FreeAndNil(c);
 end.
 

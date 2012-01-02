@@ -2,6 +2,7 @@ unit lfp_refobj;
 
 {$mode objfpc}{$H+}
 {$interfaces corba}
+{assertions on}
 
 interface
 
@@ -16,7 +17,7 @@ type
   /// base for your interfaces, so that cast to TRefObject can always be made.
   IRefObject = interface
     function retain : TRefObject;
-    function release : boolean; // returns true if object must be disposed
+    function release : boolean; // returns true if pointer must be set to nil
     function createRefObserver : TRefObserver;
     function asTRefObject : TRefObject;
     function clone : TRefObject;
@@ -29,8 +30,8 @@ type
   /// a := b.createRefObserver;
   /// a.getTRefObject.dosmth;
   /// FreeAndNil(a);
-  /// safeRelease(b);
-  /// safeRelease(c);
+  /// safeRelease(b,b);
+  /// safeRelease(c,c);
   { TRefObserver }
 
   TRefObserver = class
@@ -53,6 +54,7 @@ type
   TRefObject = class(IRefObject)
     private
       refstruct : PRefStruct;
+      magic : integer; // magic number to identify on safeRelease
     public
       constructor create;
 	  destructor destroy;override;
@@ -60,10 +62,7 @@ type
     public
       { IRefObject }
 	  function retain : TRefObject;
-
-    protected
 	  function release : boolean; // returns true if object must be disposed
-    public
 	  function createRefObserver : TRefObserver;
       function asTRefObject : TRefObject;
       function clone : TRefObject;
@@ -71,10 +70,12 @@ type
 
 
   function safeRetain(o : IRefObject) : TRefObject;inline;
-  procedure safeRelease(var o {: TRefObject});
+  procedure safeRelease(o : IRefObject; var vo);inline;
+  procedure safeRelease(o : TRefObject; var vo);inline;
 
 implementation
 uses sysutils;
+const refObjectMagic = $13254769;
 
 function safeRetain(o: IRefObject): TRefObject;
 begin
@@ -84,25 +85,48 @@ begin
   result := nil;
 end;
 
+procedure safeRelease(o: IRefObject; var vo);
+begin
+  if o <> nil then
+     begin
+       if o.release then
+          pointer(vo) := nil;
+     end;
+end;
+
+procedure safeRelease(o: TRefObject; var vo);
+begin
+  if o <> nil then
+     begin
+       if o.release then
+          pointer(vo) := nil;
+     end;
+end;
+
+{
 procedure safeRelease(var o);
 var
   p : pointer;
-  obj : TRefObject;
+  obj : IRefObject;
 begin
   p := pointer(o);
   if p <> nil then
      begin
-       obj := TRefObject(p);
+       obj := IRefObject(p);
+       Assert(obj.asTRefObject.magic = refObjectMagic, 'Not an IRefObject');
        if obj.release then
-          FreeAndNil(o);
+          pointer(o) := nil;
+
      end;
 end;
+}
 
 { TRefObject }
 
 constructor TRefObject.create;
 begin
   new(refstruct, init(self));
+  magic := refObjectMagic;
 end;
 
 destructor TRefObject.destroy;
@@ -110,6 +134,7 @@ begin
   if refstruct^.noRefsLeft then
       dispose(refstruct, done);
 
+  magic := 0;
   inherited destroy;
 end;
 
@@ -122,7 +147,13 @@ end;
 function TRefObject.release: boolean;
 begin
   refstruct^.decStrong;
-  result := refstruct^.mustFreePointer;
+  if refstruct^.mustFreePointer then
+     begin
+       Free;
+       exit(true);
+     end;
+
+  result := false;
 end;
 
 function TRefObject.createRefObserver: TRefObserver;

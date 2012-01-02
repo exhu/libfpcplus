@@ -42,8 +42,8 @@
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="28" Y="20"/>
-        <UsageCount Value="20"/>
+        <CursorPos X="18" Y="24"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -52,9 +52,9 @@
         <UnitName Value="lfp_refobj_low"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="56"/>
+        <TopLine Value="1"/>
         <CursorPos X="26" Y="16"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -63,27 +63,29 @@
         <UnitName Value="lfp_refobj"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="24"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="71"/>
+        <CursorPos X="10" Y="101"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/sysutils/sysutilh.inc"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="260"/>
         <CursorPos X="23" Y="278"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/sysutils/sysutils.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="126"/>
-        <CursorPos X="9" Y="130"/>
+        <CursorPos X="27" Y="131"/>
         <UsageCount Value="10"/>
       </Unit4>
     </Units>
-    <JumpHistory Count="15" HistoryIndex="14">
+    <JumpHistory Count="18" HistoryIndex="17">
       <Position1>
         <Filename Value="libunits/lfp_refobj_low.pas"/>
         <Caret Line="24" Column="16" TopLine="5"/>
@@ -118,32 +120,44 @@
       </Position8>
       <Position9>
         <Filename Value="libunits/lfp_refobj.pas"/>
-        <Caret Line="70" Column="14" TopLine="125"/>
+        <Caret Line="90" Column="21" TopLine="72"/>
       </Position9>
       <Position10>
         <Filename Value="libunits/lfp_refobj.pas"/>
-        <Caret Line="90" Column="21" TopLine="72"/>
+        <Caret Line="17" Column="25" TopLine="1"/>
       </Position10>
       <Position11>
         <Filename Value="libunits/lfp_refobj.pas"/>
-        <Caret Line="17" Column="25" TopLine="1"/>
+        <Caret Line="85" Column="18" TopLine="67"/>
       </Position11>
       <Position12>
         <Filename Value="libunits/lfp_refobj.pas"/>
-        <Caret Line="85" Column="18" TopLine="67"/>
+        <Caret Line="120" Column="1" TopLine="103"/>
       </Position12>
       <Position13>
         <Filename Value="libunits/lfp_refobj.pas"/>
-        <Caret Line="120" Column="1" TopLine="103"/>
+        <Caret Line="69" Column="35" TopLine="45"/>
       </Position13>
       <Position14>
-        <Filename Value="libunits/lfp_refobj.pas"/>
-        <Caret Line="69" Column="35" TopLine="45"/>
-      </Position14>
-      <Position15>
         <Filename Value="refobjtest.lpr"/>
         <Caret Line="22" Column="1" TopLine="1"/>
+      </Position14>
+      <Position15>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="96" Column="27" TopLine="67"/>
       </Position15>
+      <Position16>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="98" Column="18" TopLine="79"/>
+      </Position16>
+      <Position17>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="73" Column="24" TopLine="52"/>
+      </Position17>
+      <Position18>
+        <Filename Value="libunits/lfp_refobj.pas"/>
+        <Caret Line="74" Column="40" TopLine="55"/>
+      </Position18>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
