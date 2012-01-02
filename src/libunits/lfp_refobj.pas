@@ -70,8 +70,8 @@ type
 
 
   function safeRetain(o : IRefObject) : TRefObject;inline;
-  procedure safeRelease(o : IRefObject; var vo);inline;
-  procedure safeRelease(o : TRefObject; var vo);inline;
+  procedure safeRelease(o : IRefObject; var vo);
+  procedure safeRelease(o : TRefObject; var vo);
 
 implementation
 uses sysutils;

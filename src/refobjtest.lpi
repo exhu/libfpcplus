@@ -38,12 +38,11 @@
         <Filename Value="refobjtest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="refobjtest"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="18" Y="24"/>
-        <UsageCount Value="22"/>
+        <CursorPos X="20" Y="24"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -52,20 +51,21 @@
         <UnitName Value="lfp_refobj_low"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
+        <TopLine Value="12"/>
         <CursorPos X="26" Y="16"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="libunits/lfp_refobj.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="lfp_refobj"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="71"/>
-        <CursorPos X="10" Y="101"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="1"/>
+        <CursorPos X="24" Y="19"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
