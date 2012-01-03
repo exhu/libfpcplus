@@ -41,7 +41,7 @@ type
   public
     constructor Create(o : IRefObject);
 
-    // TODO make thread-safe
+    // thread-safe
     procedure incStrong;inline;
     procedure decStrong;inline;
     procedure incWeak;inline;
@@ -137,22 +137,34 @@ end;
 
 procedure TRefCounter.incStrong;
 begin
-  inc(strong);
+  if ismultithread then
+    interlockedIncrement(strong)
+  else
+    inc(strong);
 end;
 
 procedure TRefCounter.decStrong;
 begin
-  dec(strong);
+  if ismultithread then
+    InterLockedDecrement(strong)
+  else
+    dec(strong);
 end;
 
 procedure TRefCounter.incWeak;
 begin
-  inc(weak);
+  if ismultithread then
+    InterLockedIncrement(weak)
+  else
+    inc(weak);
 end;
 
 procedure TRefCounter.decWeak;
 begin
-  dec(weak);
+  if ismultithread then
+    InterLockedDecrement(weak)
+  else
+    dec(weak);
 end;
 
 function TRefCounter.tryFreeObj: boolean;
