@@ -63,6 +63,9 @@ type
 
   TRefObserver = class
     public
+      function iref : IRefObject;inline;
+      function obj : TObject;inline;
+
       function getIRefObject : IRefObject;
 
       destructor Destroy; override;
@@ -235,6 +238,16 @@ begin
 end;
 
 { TRefObserver }
+
+function TRefObserver.iref: IRefObject;
+begin
+  result := refcounter.iObj;
+end;
+
+function TRefObserver.obj: TObject;
+begin
+  result := refcounter.iObj.asTObject;
+end;
 
 function TRefObserver.getIRefObject: IRefObject;
 begin
