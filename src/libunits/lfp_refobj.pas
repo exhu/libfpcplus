@@ -26,7 +26,9 @@ type
   /// b := TRefObject.create;
   /// c := safeRetain(b);
   /// a := b.createRefObserver;
-  /// a.getTRefObject.dosmth;
+  /// t := a.getIRefObjectRetained;
+  /// t.dosmth;
+  /// safeRelease(t);
   /// FreeAndNil(a);
   /// safeRelease(b,b);
   /// safeRelease(c,c);
@@ -50,10 +52,10 @@ type
     function tryFreeObj : boolean;inline; // true if freed
 
     /// true if strong < 1
-    function mustFreeIOBJ : boolean;
+    function mustFreeIOBJ : boolean;inline;
 
     /// true if both weak and strong < 1
-    function noRefsLeft : boolean;
+    function noRefsLeft : boolean;inline;
 
     property iObj : IRefObject read f_iobj;
   end;
@@ -63,10 +65,8 @@ type
 
   TRefObserver = class
     public
-      function iref : IRefObject;inline;
-      function obj : TObject;inline;
-
-      function getIRefObject : IRefObject;
+      function valid : boolean;
+      function getIRefObjectRetained : IRefObject;
 
       destructor Destroy; override;
 
@@ -137,42 +137,45 @@ end;
 
 procedure TRefCounter.incStrong;
 begin
-  if ismultithread then
+  //if ismultithread then
     interlockedIncrement(strong)
-  else
-    inc(strong);
+  //else
+  //  inc(strong);
 end;
 
 procedure TRefCounter.decStrong;
 begin
-  if ismultithread then
+  //if ismultithread then
     InterLockedDecrement(strong)
-  else
-    dec(strong);
+  //else
+  //  dec(strong);
 end;
 
 procedure TRefCounter.incWeak;
 begin
-  if ismultithread then
+  //if ismultithread then
     InterLockedIncrement(weak)
-  else
-    inc(weak);
+  //else
+  //  inc(weak);
 end;
 
 procedure TRefCounter.decWeak;
 begin
-  if ismultithread then
+  //if ismultithread then
     InterLockedDecrement(weak)
-  else
-    dec(weak);
+  //else
+  //  dec(weak);
 end;
 
 function TRefCounter.tryFreeObj: boolean;
+var
+  tmp_obj : IRefObject;
 begin
   if mustFreeIOBJ then
      begin
-       f_iobj.asTObject.Free;
+       tmp_obj := f_iobj;
        f_iobj := nil;
+       tmp_obj.asTObject.Free;
        exit(true);
      end;
 
@@ -251,19 +254,14 @@ end;
 
 { TRefObserver }
 
-function TRefObserver.iref: IRefObject;
+function TRefObserver.valid: boolean;
 begin
-  result := refcounter.iObj;
+  result := refcounter.iObj <> nil;
 end;
 
-function TRefObserver.obj: TObject;
+function TRefObserver.getIRefObjectRetained: IRefObject;
 begin
-  result := refcounter.iObj.asTObject;
-end;
-
-function TRefObserver.getIRefObject: IRefObject;
-begin
-  exit(refcounter.iObj);
+  result := safeRetain(refcounter.iObj);
 end;
 
 destructor TRefObserver.Destroy;
@@ -277,6 +275,9 @@ end;
 constructor TRefObserver.create(p: TRefCounter);
 begin
   inherited create;
+
+  Assert(p <> nil);
+
   refcounter := p;
   refcounter.incWeak;
 end;

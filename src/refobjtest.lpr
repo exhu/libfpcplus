@@ -41,11 +41,14 @@ begin
   c := b.createRefObserver;
 
   safeRelease(a,a);
-  io := c.getIRefObject;
+  io := c.getIRefObjectRetained;
   o := io.asTObject;
   (o as TMyRefCls).sayHello;
   safeRelease(b,b);
-  writeln('Is TMyRefCls alive? ', boolean(ptrint(c.getIRefObject)));
+  writeln('Is TMyRefCls alive? ', c.valid);
+
+  safeRelease(io,io);
+  writeln(c.valid);
   FreeAndNil(c);
 end.
 
