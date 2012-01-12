@@ -14,10 +14,20 @@ uses
 
 type
 
+  IMy1 = interface(IRefObject)
+       procedure say1;
+  end;
+
+  IMy2 = interface(IRefObject)
+       procedure say2;
+  end;
+
   { TMyRefCls }
 
-  TMyRefCls = class(TRefObject)
+  TMyRefCls = class(TRefObject, IMy1, IMy2)
     procedure sayHello;
+    procedure say1;
+    procedure say2;
   end;
 
 
@@ -27,6 +37,8 @@ var a: TMyRefCls;
     c : TRefObserver;
     o : TObject;
     io : IRefObject;
+    i1 : IMy1;
+    i2 : IMy2;
 
 { TMyRefCls }
 
@@ -35,9 +47,29 @@ begin
   writeln('hello');
 end;
 
+procedure TMyRefCls.say1;
+begin
+  writeln('say1');
+end;
+
+procedure TMyRefCls.say2;
+begin
+  writeln('say2');
+end;
+
 begin
   a := TMyRefCls.create;
   b := safeRetain(a);
+  i1 := a;
+  safeRetain(i1);
+  i2 := a;
+
+  writeln('i1 = ', ptrint(i1), ' i2 = ', ptrint(i2));
+
+  i1.say1;
+  i2.say2;
+
+  safeRelease(i1, i1);
   c := b.createRefObserver;
 
   safeRelease(a,a);
