@@ -6,9 +6,9 @@ uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  Classes, lfp_refobj
-  { you can add units after this },
-  sysutils;
+  Classes,
+  sysutils,
+  lfp_refobj;
 
 {$R *.res}
 
