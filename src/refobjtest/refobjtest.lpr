@@ -30,6 +30,18 @@ type
     procedure say2;
   end;
 
+  { TTestHolder }
+
+  TTestHolder = class(IRefObject)
+    private
+      fholder : TRefHolder;
+
+
+    public
+      constructor create;
+      destructor destroy;override;
+      property holder : TRefHolder read fholder implements IRefObject;
+  end;
 
 
 var a: TMyRefCls;
@@ -39,6 +51,20 @@ var a: TMyRefCls;
     io : IRefObject;
     i1 : IMy1;
     i2 : IMy2;
+    holder : TTestHolder;
+
+constructor TTestHolder.create;
+begin
+  inherited create;
+
+  fholder := TRefHolder.create(self);
+end;
+
+destructor TTestHolder.destroy;
+begin
+  holder.Free;
+  inherited destroy;
+end;
 
 { TMyRefCls }
 
@@ -82,5 +108,12 @@ begin
   safeRelease(io,io);
   writeln(c.valid);
   FreeAndNil(c);
+
+  holder := TTestHolder.create;
+  io := holder.holder;
+  writeln('io = ', ptrint(io));
+  io.retain;
+  io.release;
+  io.release;
 end.
 

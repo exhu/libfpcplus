@@ -91,10 +91,21 @@ type
 
     public
       { IRefObject }
-	  function retain : IRefObject;
-	  function release : boolean; // returns true if object must be disposed
-	  function createRefObserver : TRefObserver;
-      function asTObject : TObject;
+	  function retain : IRefObject;virtual;
+	  function release : boolean;virtual; // returns true if object must be disposed
+	  function createRefObserver : TRefObserver;virtual;
+      function asTObject : TObject;virtual;
+  end;
+
+
+  { TRefHolder }
+
+  TRefHolder = class (TRefObject, IRefObject)
+    constructor create(AObj : TObject);
+    function asTObject: TObject; override;
+
+    private
+      obj : TObject;
   end;
 
 
@@ -124,6 +135,19 @@ begin
        o.release;
      end;
   pointer(vartonil) := nil;
+end;
+
+{ TRefHolder }
+
+constructor TRefHolder.create(AObj: TObject);
+begin
+  inherited Create;
+  obj := AObj;
+end;
+
+function TRefHolder.asTObject: TObject;
+begin
+  Result:= obj;
 end;
 
 { TRefCounter }
