@@ -33,16 +33,15 @@
         <LaunchingApplication PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <Units Count="6">
+    <Units Count="7">
       <Unit0>
         <Filename Value="refobjtest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="refobjtest"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="1" Y="26"/>
+        <CursorPos X="11" Y="9"/>
         <UsageCount Value="57"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -78,15 +77,27 @@
       </Unit4>
       <Unit5>
         <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/inc/systemh.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="431"/>
         <CursorPos X="12" Y="447"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="../lfp_refobj.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="lfp_refobj"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="7" Y="110"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit6>
     </Units>
-    <JumpHistory Count="13" HistoryIndex="12">
+    <JumpHistory Count="16" HistoryIndex="15">
       <Position1>
         <Filename Value="refobjtest.lpr"/>
         <Caret Line="45" Column="17" TopLine="16"/>
@@ -139,6 +150,18 @@
         <Filename Value="refobjtest.lpr"/>
         <Caret Line="5" Column="5" TopLine="1"/>
       </Position13>
+      <Position14>
+        <Filename Value="refobjtest.lpr"/>
+        <Caret Line="26" Column="1" TopLine="1"/>
+      </Position14>
+      <Position15>
+        <Filename Value="refobjtest.lpr"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position15>
+      <Position16>
+        <Filename Value="../lfp_refobj.pas"/>
+        <Caret Line="106" Column="55" TopLine="130"/>
+      </Position16>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
