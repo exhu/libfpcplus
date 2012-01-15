@@ -101,6 +101,9 @@ type
 
   { TRefHolder }
 
+  /// does reference-counting for the specified object,
+  /// use to add refcounting to an object not based on TRefObject,
+  /// i.e. delegate IRefObject interface to a proporty of TRefHolder type.
   TRefHolder = class(TRefObject, IRefObject)
     constructor Create(AObj: TObject);
     function AsTObject: TObject; override;
