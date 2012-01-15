@@ -14,11 +14,12 @@ type
   TRefObserver = class;
 
   /// base for your interfaces, so that cast to TRefObject can always be made.
-  IRefObject = interface ['IRefObject']
-    function retain : IRefObject;
-    function release : boolean; // returns true if pointer must be set to nil
-    function createRefObserver : TRefObserver;
-    function asTObject : TObject;
+  IRefObject = interface
+    ['IRefObject']
+    function Retain: IRefObject;
+    function Release: boolean; // returns true if pointer must be set to nil
+    function CreateRefObserver: TRefObserver;
+    function AsTObject: TObject;
   end;
 
   /// sets pointer to TRefObject to nil when reference counter = 0
@@ -37,44 +38,44 @@ type
   /// manages the references, used internally
   TRefCounter = class
   private
-    strong, weak : longint;
-    f_iobj : IRefObject;
+    strong, weak: longint;
+    f_iobj: IRefObject;
 
   public
-    constructor Create(o : IRefObject);
+    constructor Create(o: IRefObject);
 
     // thread-safe
-    procedure incStrong;inline;
-    procedure decStrong;inline;
-    procedure incWeak;inline;
-    procedure decWeak;inline;
+    procedure IncStrong; inline;
+    procedure DecStrong; inline;
+    procedure IncWeak; inline;
+    procedure DecWeak; inline;
 
-    function tryFreeObj : boolean;inline; // true if freed
+    function TryFreeObj: boolean; inline; // true if freed
 
     /// true if strong < 1
-    function mustFreeIOBJ : boolean;inline;
+    function MustFreeIOBJ: boolean; inline;
 
     /// true if both weak and strong < 1
-    function noRefsLeft : boolean;inline;
+    function NoRefsLeft: boolean; inline;
 
-    property iObj : IRefObject read f_iobj;
+    property iObj: IRefObject read f_iobj;
   end;
 
 
   { TRefObserver }
 
   TRefObserver = class
-    public
-      function valid : boolean;
-      function getIRefObjectRetained : IRefObject;
+  public
+    function Valid: boolean;
+    function GetIRefObjectRetained: IRefObject;
 
-      destructor Destroy; override;
+    destructor Destroy; override;
 
     //protected
-      constructor create(p : TRefCounter);
+    constructor Create(p: TRefCounter);
 
-    private
-      refcounter : TRefCounter;
+  private
+    refcounter: TRefCounter;
 
   end;
 
@@ -82,72 +83,75 @@ type
   { TRefObject }
 
   TRefObject = class(IRefObject)
-    private
-      refcounter : TRefCounter;
-      magic : integer; // magic number to identify on safeRelease
-    public
-      constructor create;
-	  destructor destroy;override;
+  private
+    refcounter: TRefCounter;
+    magic: integer; // magic number to identify on safeRelease
+  public
+    constructor Create;
+    destructor Destroy; override;
 
-    public
-      { IRefObject }
-	  function retain : IRefObject;virtual;
-	  function release : boolean;virtual; // returns true if object must be disposed
-	  function createRefObserver : TRefObserver;virtual;
-      function asTObject : TObject;virtual;
+  public
+    { IRefObject }
+    function Retain: IRefObject; virtual;
+    function Release: boolean; virtual; // returns true if object must be disposed
+    function CreateRefObserver: TRefObserver; virtual;
+    function AsTObject: TObject; virtual;
   end;
 
 
   { TRefHolder }
 
-  TRefHolder = class (TRefObject, IRefObject)
-    constructor create(AObj : TObject);
-    function asTObject: TObject; override;
+  TRefHolder = class(TRefObject, IRefObject)
+    constructor Create(AObj: TObject);
+    function AsTObject: TObject; override;
 
-    private
-      obj : TObject;
+  private
+    obj: TObject;
   end;
 
 
-  function safeRetain(o : IRefObject) : IRefObject;inline;
+function SafeRetain(o: IRefObject): IRefObject; inline;
 
-  /// calls release (if not nil) and assigns nil to the variable
-  /// fpc 2.6 does not allow to pass derived classes as var arguments,
-  /// so we have to duplicate as untyped.
-  procedure safeRelease(o : IRefObject; var vartonil);
+/// calls release (if not nil) and assigns nil to the variable
+/// fpc 2.6 does not allow to pass derived classes as var arguments,
+/// so we have to duplicate as untyped.
+procedure SafeRelease(o: IRefObject; var vartonil);
 
 implementation
-uses sysutils;
-const refObjectMagic = $13254769;
 
-function safeRetain(o: IRefObject): IRefObject;
+uses SysUtils;
+
+const
+  refObjectMagic = $13254769;
+
+function SafeRetain(o: IRefObject): IRefObject;
 begin
   if o <> nil then
-     exit(o.retain);
+    exit(o.retain);
 
-  result := nil;
+  Result := nil;
 end;
 
-procedure safeRelease(o: IRefObject; var vartonil);
+procedure SafeRelease(o: IRefObject; var vartonil);
 begin
   if o <> nil then
-     begin
-       o.release;
-     end;
+  begin
+    o.Release;
+  end;
   pointer(vartonil) := nil;
 end;
 
 { TRefHolder }
 
-constructor TRefHolder.create(AObj: TObject);
+constructor TRefHolder.Create(AObj: TObject);
 begin
   inherited Create;
   obj := AObj;
 end;
 
-function TRefHolder.asTObject: TObject;
+function TRefHolder.AsTObject: TObject;
 begin
-  Result:= obj;
+  Result := obj;
 end;
 
 { TRefCounter }
@@ -162,7 +166,7 @@ end;
 procedure TRefCounter.incStrong;
 begin
   //if ismultithread then
-    interlockedIncrement(strong)
+  interlockedIncrement(strong);
   //else
   //  inc(strong);
 end;
@@ -170,7 +174,7 @@ end;
 procedure TRefCounter.decStrong;
 begin
   //if ismultithread then
-    InterLockedDecrement(strong)
+  InterLockedDecrement(strong);
   //else
   //  dec(strong);
 end;
@@ -178,7 +182,7 @@ end;
 procedure TRefCounter.incWeak;
 begin
   //if ismultithread then
-    InterLockedIncrement(weak)
+  InterLockedIncrement(weak);
   //else
   //  inc(weak);
 end;
@@ -186,119 +190,101 @@ end;
 procedure TRefCounter.decWeak;
 begin
   //if ismultithread then
-    InterLockedDecrement(weak)
+  InterLockedDecrement(weak);
   //else
   //  dec(weak);
 end;
 
-function TRefCounter.tryFreeObj: boolean;
+function TRefCounter.TryFreeObj: boolean;
 var
-  tmp_obj : IRefObject;
+  tmp_obj: IRefObject;
 begin
   if mustFreeIOBJ then
-     begin
-       tmp_obj := f_iobj;
-       f_iobj := nil;
-       tmp_obj.asTObject.Free;
-       exit(true);
-     end;
+  begin
+    tmp_obj := f_iobj;
+    f_iobj := nil;
+    tmp_obj.asTObject.Free;
+    exit(True);
+  end;
 
-  result := false;
+  Result := False;
 end;
 
 
-function TRefCounter.mustFreeIOBJ: boolean;
+function TRefCounter.MustFreeIOBJ: boolean;
 begin
-  result := strong < 1;
+  Result := strong < 1;
 end;
 
-function TRefCounter.noRefsLeft: boolean;
+function TRefCounter.NoRefsLeft: boolean;
 begin
-  result := (strong < 1) and (weak < 1);
+  Result := (strong < 1) and (weak < 1);
 end;
 
-
-{
-procedure safeRelease(var o);
-var
-  p : pointer;
-  obj : IRefObject;
-begin
-  p := pointer(o);
-  if p <> nil then
-     begin
-       obj := IRefObject(p);
-       Assert(obj.asTRefObject.magic = refObjectMagic, 'Not an IRefObject');
-       if obj.release then
-          pointer(o) := nil;
-
-     end;
-end;
-}
 
 { TRefObject }
 
-constructor TRefObject.create;
+constructor TRefObject.Create;
 begin
-  inherited create;
-  refcounter := TRefCounter.create(self);
+  inherited Create;
+  refcounter := TRefCounter.Create(self);
   magic := refObjectMagic;
 end;
 
-destructor TRefObject.destroy;
+destructor TRefObject.Destroy;
 begin
   if refcounter.noRefsLeft then
-      FreeAndNil(refcounter);
+    FreeAndNil(refcounter);
 
   magic := 0;
-  inherited destroy;
+  inherited Destroy;
 end;
 
-function TRefObject.retain: IRefObject;
+function TRefObject.Retain: IRefObject;
 begin
   refcounter.incStrong;
-  result := self;
+  Result := self;
 end;
 
-function TRefObject.release: boolean;
+function TRefObject.Release: boolean;
 begin
   refcounter.decStrong;
-  result := refcounter.tryFreeObj;
+  Result := refcounter.tryFreeObj;
 end;
 
-function TRefObject.createRefObserver: TRefObserver;
+function TRefObject.CreateRefObserver: TRefObserver;
 begin
-  result := TRefObserver.create(refcounter);
+  Result := TRefObserver.Create(refcounter);
 end;
 
-function TRefObject.asTObject: TObject;
+function TRefObject.AsTObject: TObject;
 begin
-  result := self;
+  Result := self;
 end;
 
 { TRefObserver }
 
-function TRefObserver.valid: boolean;
+function TRefObserver.Valid: boolean;
 begin
-  result := refcounter.iObj <> nil;
+  Result := refcounter.iObj <> nil;
 end;
 
-function TRefObserver.getIRefObjectRetained: IRefObject;
+function TRefObserver.GetIRefObjectRetained: IRefObject;
 begin
-  result := safeRetain(refcounter.iObj);
+  Result := safeRetain(refcounter.iObj);
 end;
 
 destructor TRefObserver.Destroy;
 begin
- refcounter.decWeak;
- if refcounter.noRefsLeft then
+  refcounter.decWeak;
+  if refcounter.noRefsLeft then
     FreeAndNil(refcounter);
   inherited Destroy;
 end;
 
-constructor TRefObserver.create(p: TRefCounter);
+constructor TRefObserver.Create(p: TRefCounter);
 begin
-  inherited create;
+  inherited Create;
 
   Assert(p <> nil);
 

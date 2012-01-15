@@ -33,17 +33,16 @@
         <LaunchingApplication PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <Units Count="7">
+    <Units Count="10">
       <Unit0>
         <Filename Value="refobjtest.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="refobjtest"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="25"/>
-        <CursorPos X="1" Y="38"/>
-        <UsageCount Value="59"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="37"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -78,145 +77,174 @@
       </Unit4>
       <Unit5>
         <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/inc/systemh.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="431"/>
         <CursorPos X="12" Y="447"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="../lfp_refobj.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="lfp_refobj"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="80"/>
-        <CursorPos X="34" Y="103"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="3"/>
+        <CursorPos X="28" Y="19"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1547"/>
+        <CursorPos X="22" Y="1630"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1297"/>
+        <CursorPos X="3" Y="864"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/classes/compon.inc"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="663"/>
+        <CursorPos X="3" Y="676"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit9>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="108" Column="1" TopLine="74"/>
+        <Caret Line="107" Column="1" TopLine="74"/>
       </Position1>
       <Position2>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="102" Column="20" TopLine="74"/>
+        <Caret Line="108" Column="1" TopLine="74"/>
       </Position2>
       <Position3>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="107" Column="1" TopLine="74"/>
+        <Caret Line="96" Column="20" TopLine="74"/>
       </Position3>
       <Position4>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="108" Column="1" TopLine="74"/>
+        <Caret Line="105" Column="1" TopLine="74"/>
       </Position4>
       <Position5>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="89" Column="11" TopLine="74"/>
+        <Caret Line="56" Column="1" TopLine="38"/>
       </Position5>
       <Position6>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="107" Column="1" TopLine="74"/>
+        <Caret Line="57" Column="1" TopLine="38"/>
       </Position6>
       <Position7>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="108" Column="1" TopLine="74"/>
+        <Caret Line="60" Column="1" TopLine="42"/>
       </Position7>
       <Position8>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="96" Column="20" TopLine="74"/>
+        <Caret Line="106" Column="1" TopLine="74"/>
       </Position8>
       <Position9>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="105" Column="1" TopLine="74"/>
+        <Caret Line="107" Column="1" TopLine="74"/>
       </Position9>
       <Position10>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="56" Column="1" TopLine="38"/>
+        <Caret Line="108" Column="1" TopLine="74"/>
       </Position10>
       <Position11>
-        <Filename Value="refobjtest.lpr"/>
-        <Caret Line="57" Column="1" TopLine="38"/>
+        <Filename Value="../lfp_refobj.pas"/>
+        <Caret Line="272" Column="1" TopLine="248"/>
       </Position11>
       <Position12>
         <Filename Value="../lfp_refobj.pas"/>
-        <Caret Line="96" Column="54" TopLine="248"/>
+        <Caret Line="273" Column="1" TopLine="248"/>
       </Position12>
       <Position13>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="60" Column="1" TopLine="42"/>
+        <Caret Line="42" Column="34" TopLine="34"/>
       </Position13>
       <Position14>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="106" Column="1" TopLine="74"/>
+        <Caret Line="65" Column="3" TopLine="41"/>
       </Position14>
       <Position15>
-        <Filename Value="refobjtest.lpr"/>
-        <Caret Line="107" Column="1" TopLine="74"/>
+        <Filename Value="../lfp_refobj.pas"/>
+        <Caret Line="272" Column="1" TopLine="254"/>
       </Position15>
       <Position16>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="108" Column="1" TopLine="74"/>
+        <Caret Line="112" Column="1" TopLine="81"/>
       </Position16>
       <Position17>
-        <Filename Value="../lfp_refobj.pas"/>
-        <Caret Line="272" Column="1" TopLine="248"/>
+        <Filename Value="refobjtest.lpr"/>
+        <Caret Line="113" Column="1" TopLine="81"/>
       </Position17>
       <Position18>
-        <Filename Value="../lfp_refobj.pas"/>
-        <Caret Line="273" Column="1" TopLine="248"/>
+        <Filename Value="refobjtest.lpr"/>
+        <Caret Line="114" Column="1" TopLine="81"/>
       </Position18>
       <Position19>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="42" Column="34" TopLine="34"/>
+        <Caret Line="115" Column="1" TopLine="81"/>
       </Position19>
       <Position20>
-        <Filename Value="refobjtest.lpr"/>
-        <Caret Line="65" Column="3" TopLine="41"/>
+        <Filename Value="../lfp_refobj.pas"/>
+        <Caret Line="272" Column="1" TopLine="254"/>
       </Position20>
       <Position21>
         <Filename Value="../lfp_refobj.pas"/>
-        <Caret Line="272" Column="1" TopLine="254"/>
+        <Caret Line="273" Column="1" TopLine="254"/>
       </Position21>
       <Position22>
-        <Filename Value="refobjtest.lpr"/>
-        <Caret Line="112" Column="1" TopLine="81"/>
+        <Filename Value="../lfp_refobj.pas"/>
+        <Caret Line="140" Column="1" TopLine="127"/>
       </Position22>
       <Position23>
-        <Filename Value="refobjtest.lpr"/>
-        <Caret Line="113" Column="1" TopLine="81"/>
+        <Filename Value="../lfp_refobj.pas"/>
+        <Caret Line="155" Column="30" TopLine="127"/>
       </Position23>
       <Position24>
         <Filename Value="refobjtest.lpr"/>
-        <Caret Line="114" Column="1" TopLine="81"/>
+        <Caret Line="111" Column="1" TopLine="15"/>
       </Position24>
       <Position25>
-        <Filename Value="refobjtest.lpr"/>
-        <Caret Line="115" Column="1" TopLine="81"/>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/classes/classesh.inc"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position25>
       <Position26>
-        <Filename Value="../lfp_refobj.pas"/>
-        <Caret Line="272" Column="1" TopLine="254"/>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/classes/classesh.inc"/>
+        <Caret Line="380" Column="3" TopLine="362"/>
       </Position26>
       <Position27>
-        <Filename Value="../lfp_refobj.pas"/>
-        <Caret Line="273" Column="1" TopLine="254"/>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/classes/classesh.inc"/>
+        <Caret Line="397" Column="3" TopLine="379"/>
       </Position27>
       <Position28>
-        <Filename Value="../lfp_refobj.pas"/>
-        <Caret Line="140" Column="1" TopLine="127"/>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/classes/classesh.inc"/>
+        <Caret Line="1576" Column="3" TopLine="1635"/>
       </Position28>
       <Position29>
-        <Filename Value="../lfp_refobj.pas"/>
-        <Caret Line="155" Column="30" TopLine="127"/>
+        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/controls.pp"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position29>
       <Position30>
-        <Filename Value="refobjtest.lpr"/>
-        <Caret Line="111" Column="1" TopLine="15"/>
+        <Filename Value="/usr/share/fpcsrc/2.4.4/rtl/objpas/classes/classesh.inc"/>
+        <Caret Line="1014" Column="3" TopLine="710"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -255,11 +283,11 @@
       </Item2>
       <Item3>
         <Source Value="../lfp_refobj.pas"/>
-        <Line Value="265"/>
+        <Line Value="1"/>
       </Item3>
       <Item4>
         <Source Value="../lfp_refobj.pas"/>
-        <Line Value="143"/>
+        <Line Value="1"/>
       </Item4>
     </BreakPoints>
     <Watches Count="1">
