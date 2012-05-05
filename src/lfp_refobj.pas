@@ -6,9 +6,6 @@ unit lfp_refobj;
 {M+}
 interface
 
-//uses
-//  Classes, SysUtils;
-
 type
   TRefObject = class;
   TRefObserver = class;
@@ -22,20 +19,10 @@ type
     function AsTObject: TObject;
   end;
 
-  /// sets pointer to TRefObject to nil when reference counter = 0
-  /// usage:
-  /// b := TRefObject.create;
-  /// c := safeRetain(b);
-  /// a := b.createRefObserver;
-  /// t := a.getIRefObjectRetained;
-  /// t.dosmth;
-  /// safeRelease(t);
-  /// FreeAndNil(a);
-  /// safeRelease(b,b);
-  /// safeRelease(c,c);
 
   { TRefCounter }
   /// manages the references, used internally
+  /// sets pointer to TRefObject to nil when reference counter = 0
   TRefCounter = class
   private
     strong, weak: longint;
@@ -82,6 +69,18 @@ type
 
   { TRefObject }
 
+
+  /// usage:
+  /// b := TRefObject.create;
+  /// c := safeRetain(b);
+  /// a := b.createRefObserver;
+  /// t := a.getIRefObjectRetained;
+  /// t.dosmth;
+  /// SafeRelease(t,t);
+  /// FreeAndNil(a);
+  /// SafeRelease(b,b);
+  /// SafeRelease(c,c);
+
   TRefObject = class(IRefObject)
   private
     refcounter: TRefCounter;
@@ -113,12 +112,13 @@ type
   end;
 
 
-function SafeRetain(o: IRefObject): IRefObject; inline;
+function SafeRetain(o: IRefObject): IRefObject;
 
 /// calls release (if not nil) and assigns nil to the variable
 /// fpc 2.6 does not allow to pass derived classes as var arguments,
 /// so we have to duplicate as untyped.
 procedure SafeRelease(o: IRefObject; var vartonil);
+
 
 implementation
 
@@ -129,18 +129,19 @@ const
 
 function SafeRetain(o: IRefObject): IRefObject;
 begin
-  if o <> nil then
+  if Assigned(o) then
     exit(o.retain);
 
-  Result := nil;
+  Result := o;
 end;
 
 procedure SafeRelease(o: IRefObject; var vartonil);
 begin
-  if o <> nil then
+  if Assigned(o) then
   begin
     o.Release;
   end;
+
   pointer(vartonil) := nil;
 end;
 
